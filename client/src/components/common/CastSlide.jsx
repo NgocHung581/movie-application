@@ -20,7 +20,7 @@ function CastSlide({ casts }) {
             className="w-full h-max"
         >
             {casts.map((cast) => (
-                <SwiperSlide key={cast.id} className="w-1/2 md:w-1/4 lg:w-1/5">
+                <SwiperSlide key={cast.id} className="w-1/2 lg:w-1/5">
                     <Link to={routesGen.person(cast.id)}>
                         <div
                             style={{

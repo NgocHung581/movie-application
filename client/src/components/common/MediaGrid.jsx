@@ -4,7 +4,7 @@ import MediaItem from "./MediaItem";
 
 function MediaGrid({ medias, mediaType }) {
     return (
-        <div className="grid grid-cols-3 md:grid-cols-4 gap-2">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
             {medias.map((media) => (
                 <MediaItem key={media.id} media={media} mediaType={mediaType} />
             ))}

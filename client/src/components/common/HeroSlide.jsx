@@ -56,7 +56,7 @@ function HeroSlide({ mediaType, mediaCategory }) {
     }, [mediaType, mediaCategory, dispatch]);
 
     return (
-        <div className="h-screen w-screen relative hero-slide-gradient-vertical">
+        <div className="lg:h-screen lg:w-screen relative hero-slide-gradient-vertical">
             <Swiper
                 loop={true}
                 grabCursor={true}
@@ -80,15 +80,15 @@ function HeroSlide({ mediaType, mediaCategory }) {
                             className={`h-full bg-center bg-cover bg-[image:var(--image-url)] pt-[130%] md:pt-[80%] lg:pt-[60%]`}
                         ></div>
                         <div className="hero-slide-gradient-horizontal"></div>
-                        <div className="w-full h-full absolute top-0 left-0 px-2.5 md:px-20 lg:px-40 flex z-[3]">
-                            <div className="h-full md:w-[30%] lg:w-[50%] flex flex-col justify-center px-[30px]">
+                        <div className="w-full h-full absolute top-0 left-0 px-8 lg:px-20 flex z-[3]">
+                            <div className="h-full w-full lg:w-[50%] flex flex-col justify-center lg:px-[30px]">
                                 <h4 className="text-3xl lg:text-6xl font-bold">
                                     {movie.title || movie.name}
                                 </h4>
                                 <div className="flex items-center gap-4 mt-8">
                                     <CircularRate value={movie.vote_average} />
 
-                                    <ul className="flex items-center gap-2">
+                                    <ul className="flex items-center gap-2 flex-wrap">
                                         {movie.genre_ids.map((genreId) => (
                                             <li
                                                 key={genreId}

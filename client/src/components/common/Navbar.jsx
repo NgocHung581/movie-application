@@ -3,7 +3,7 @@ import menuConfigs from "../../configs/menu.configs";
 
 function Navbar() {
     return (
-        <ul className="flex gap-4">
+        <ul className="flex md:gap-4">
             {menuConfigs.main.map((item, index) => (
                 <li
                     key={index}
@@ -13,7 +13,9 @@ function Navbar() {
                         to={item.path}
                         end
                         className={({ isActive }) =>
-                            isActive ? `btn btn-primary` : "btn btn-text"
+                            isActive
+                                ? `btn btn-primary whitespace-nowrap`
+                                : "btn btn-text whitespace-nowrap"
                         }
                     >
                         {item.display}

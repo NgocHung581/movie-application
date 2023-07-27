@@ -41,7 +41,7 @@ function AuthModal() {
                 className="bg-overlay h-full w-full"
                 onClick={handleClose}
             ></div>
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 dark:bg-dark bg-light rounded p-8 text-center box-shadow-auth-modal min-w-[540px]">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 dark:bg-dark bg-light rounded p-8 text-center box-shadow-auth-modal min-w-[326px] md:min-w-[540px]">
                 <div className="mb-8">
                     <Logo />
                 </div>

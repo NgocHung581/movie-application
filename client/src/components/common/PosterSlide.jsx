@@ -18,7 +18,7 @@ function PosterSlide({ posters }) {
                 {posters.map((poster, index) => (
                     <SwiperSlide
                         key={index}
-                        className="w-1/3 md:w-1/4 lg:w-1/5"
+                        className="w-1/2 md:w-1/3 lg:w-1/5"
                     >
                         <div
                             style={{

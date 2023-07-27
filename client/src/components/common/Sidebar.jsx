@@ -1,5 +1,5 @@
 import { Bars3Icon, MoonIcon, SunIcon } from "@heroicons/react/24/outline";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
@@ -19,12 +19,34 @@ function Sidebar() {
     const { themeMode } = useSelector((state) => state.themeMode);
 
     const [isOpen, setIsOpen] = useState(false);
+    const [isAlreadyAnimationIn, setIsAlreadyAnimationIn] = useState(false);
 
-    const closeSidebar = () => setIsOpen(false);
+    const overlayRef = useRef(null);
+    const sidebarRef = useRef(null);
 
     const toggleDarkMode = () => {
         const theme = themeMode === "dark" ? "light" : "dark";
         dispatch(setThemeMode(theme));
+    };
+
+    const handleOpenSidebar = () => {
+        setIsOpen(true);
+        setIsAlreadyAnimationIn(true);
+    };
+
+    const closeSidebar = () => {
+        overlayRef.current.classList.add("animate-fadeOut");
+        sidebarRef.current.classList.add("animate-slideOut");
+        setIsAlreadyAnimationIn(false);
+    };
+
+    const handleOnAnimationEnd = () => {
+        if (isAlreadyAnimationIn) {
+            overlayRef.current.classList.remove("animate-fadeIn");
+            sidebarRef.current.classList.remove("animate-slideIn");
+        } else {
+            setIsOpen(false);
+        }
     };
 
     useEffect(() => {
@@ -37,14 +59,20 @@ function Sidebar() {
 
     return (
         <>
-            <Bars3Icon className="h-6 w-6" onClick={() => setIsOpen(true)} />
+            <Bars3Icon className="h-6 w-6" onClick={handleOpenSidebar} />
             {isOpen && (
                 <div className="fixed top-0 left-0 bottom-0 right-0">
                     <div
-                        className="bg-overlay h-full w-full"
+                        ref={overlayRef}
+                        className={`bg-overlay h-full w-full animate-fadeIn`}
                         onClick={closeSidebar}
+                        onAnimationEnd={handleOnAnimationEnd}
                     ></div>
-                    <div className="absolute top-0 left-0 w-[300px]  h-full dark:bg-[#363636] bg-white">
+                    <div
+                        ref={sidebarRef}
+                        className="absolute top-0 left-0 w-[300px] h-full dark:bg-[#363636] bg-white animate-slideIn"
+                        onAnimationEnd={handleOnAnimationEnd}
+                    >
                         <div className="px-6 py-5 text-center">
                             <Logo />
                         </div>

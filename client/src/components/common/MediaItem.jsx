@@ -1,6 +1,7 @@
 import { HeartIcon, PlayIcon } from "@heroicons/react/24/solid";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
+import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
 
 import tmdbConfigs from "../../api/configs/tmdb.configs";
@@ -11,6 +12,8 @@ import CircularRate from "../common/CircularRate";
 
 function MediaItem({ media, mediaType }) {
     const { listFavorites } = useSelector((state) => state.user);
+
+    const isTabletOrMobile = useMediaQuery({ maxWidth: 1023 });
 
     return (
         <Link
@@ -43,15 +46,17 @@ function MediaItem({ media, mediaType }) {
                         }) && (
                             <HeartIcon className="h-8 w-8 absolute top-4 right-4 text-primary" />
                         )}
-                        <div className="h-full w-full absolute top-0 left-0 card-overlay md:opacity-0 group-hover:opacity-100 transition-300"></div>
-                        <Button
-                            lg
-                            primary
-                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-300"
-                        >
-                            <PlayIcon className="h-4 w-4" />
-                        </Button>
-                        <div className="h-max w-full absolute bottom-0 left-0 translate-y-full opacity-0 group-hover:opacity-100 group-hover:translate-y-0 px-4 py-8 transition-300">
+                        <div className="h-full w-full absolute top-0 left-0 card-overlay lg:opacity-0 lg:group-hover:opacity-100 transition-300"></div>
+                        {!isTabletOrMobile && (
+                            <Button
+                                lg
+                                primary
+                                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-300"
+                            >
+                                <PlayIcon className="h-4 w-4" />
+                            </Button>
+                        )}
+                        <div className="h-max w-full absolute bottom-0 left-0 lg:translate-y-full lg:opacity-0 lg:group-hover:opacity-100 lg:group-hover:translate-y-0 px-4 py-8 transition-300">
                             {(media.vote_average || media.mediaRate) && (
                                 <CircularRate
                                     value={

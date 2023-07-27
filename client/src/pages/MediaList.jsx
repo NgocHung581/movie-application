@@ -75,8 +75,8 @@ function MediaList() {
                 mediaCategory={mediaCategories[currentCategory]}
             />
 
-            <div className="container mx-auto">
-                <div className="flex items-center justify-between mb-8">
+            <div className="container mx-auto px-4 lg:px-0">
+                <div className="flex flex-col gap-4 md:flex-row items-center justify-between mb-8">
                     <h5 className="font-bold text-2xl">
                         {mediaType === tmdbConfigs.mediaType.movie
                             ? "Movies"

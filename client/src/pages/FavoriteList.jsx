@@ -1,16 +1,16 @@
 import { TrashIcon } from "@heroicons/react/24/solid";
-import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 
 import favoriteApi from "../api/modules/favorite.api";
-import { removeFavorite, setListFavorites } from "../redux/features/userSlice";
-import MediaItem from "../components/common/MediaItem";
 import Button from "../components/common/Button";
+import MediaItem from "../components/common/MediaItem";
 import Spinner from "../components/common/Spinner";
-import { setGlobalLoading } from "../redux/features/globalLoadingSlice";
 import Title from "../components/common/Title";
+import { setGlobalLoading } from "../redux/features/globalLoadingSlice";
+import { removeFavorite } from "../redux/features/userSlice";
 
 function FavoriteItem({ media, onRemoved }) {
     const dispatch = useDispatch();
@@ -100,7 +100,7 @@ function FavoriteList() {
         <div className="container mx-auto mt-20 p-4">
             <Title title={`YOUR FAVORITES (${count})`} />
 
-            <div className="grid grid-cols-3 md:grid-cols-4 gap-2">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
                 {filteredMedias.map((media) => (
                     <FavoriteItem
                         key={media.id}

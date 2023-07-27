@@ -12,11 +12,31 @@ export default {
             animation: {
                 "loading-slide":
                     "2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) 0s infinite normal none running loading",
+                fadeIn: "fadeIn 0.3s ease forwards",
+                fadeOut: "fadeOut 0.3s ease forwards",
+                slideIn: "slideIn 0.3s ease forwards",
+                slideOut: "slideOut 0.3s ease forwards",
             },
             keyframes: {
                 loading: {
                     "0%": { left: "-35%" },
                     "60%, 100%": { left: "135%" },
+                },
+                fadeIn: {
+                    "0%": { opacity: "0" },
+                    "100%": { opacity: "100%" },
+                },
+                fadeOut: {
+                    "0%": { opacity: "100%" },
+                    "100%": { opacity: "0" },
+                },
+                slideIn: {
+                    "0%": { transform: "translateX(-100%)" },
+                    "100%": { transform: "translateX(0)" },
+                },
+                slideOut: {
+                    "0%": { transform: "translateX(0)" },
+                    "100%": { transform: "translateX(-100%)" },
                 },
             },
             backgroundColor: {
